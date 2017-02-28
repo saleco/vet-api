@@ -4,17 +4,16 @@ package com.vetty.model;
  * Created by devfacotry on 2/27/17.
  */
 public class AttendanceType {
-    private int id;
+    private Integer id;
     private String name;
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         this.name = name;

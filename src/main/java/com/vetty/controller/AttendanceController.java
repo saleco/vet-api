@@ -12,6 +12,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+
 @RestController
 public class AttendanceController {
 
@@ -24,10 +26,8 @@ public class AttendanceController {
     }
 
     @PostMapping(value = "/attendance")
-    public ResponseEntity create(@RequestBody Attendance attendance) {
-
+    public ResponseEntity create(@Valid @RequestBody Attendance attendance) {
         attendanceRepository.create(attendance);
-
         return new ResponseEntity(attendance, HttpStatus.OK);
     }
 }

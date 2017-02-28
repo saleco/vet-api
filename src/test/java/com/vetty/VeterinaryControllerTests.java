@@ -15,17 +15,16 @@
  */
 package com.vetty;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.put;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.vetty.model.AnimalType;
 import com.vetty.model.Veterinary;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.http.MediaType;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VeterinaryControllerTests extends BaseTests {
 
@@ -34,7 +33,43 @@ public class VeterinaryControllerTests extends BaseTests {
     public void veterinarySignup() throws Exception {
         Veterinary veterinary = new Veterinary();
         veterinary.setName("Ana Paula Cardoso");
+        veterinary.setUsername("ap2cardoso21");
+        veterinary.setPassword("123455");
+
+        List<AnimalType> animalTypeList = new ArrayList<AnimalType>();
+        AnimalType feline = new AnimalType();
+        feline.setId(2);
+        animalTypeList.add(feline);
+        AnimalType canine = new AnimalType();
+        canine.setId(3);
+        animalTypeList.add(canine);
+        veterinary.setAnimalTypes(animalTypeList);
+
         this.mockMvc.perform(post("/veterinary")
+                .content(asJsonString(veterinary))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk());
+
+    }
+
+    @Test
+    public void veterinaryUpdate() throws Exception {
+        Veterinary veterinary = new Veterinary();
+        veterinary.setId(1);
+        veterinary.setName("Dudinha Vilela");
+
+        List<AnimalType> animalTypeList = new ArrayList<AnimalType>();
+        AnimalType feline = new AnimalType();
+        feline.setId(2);
+        animalTypeList.add(feline);
+        AnimalType canine = new AnimalType();
+        canine.setId(3);
+        animalTypeList.add(canine);
+        veterinary.setAnimalTypes(animalTypeList);
+
+        this.mockMvc.perform(put("/veterinary")
                 .content(asJsonString(veterinary))
                 .contentType(MediaType.APPLICATION_JSON)
                 .accept(MediaType.APPLICATION_JSON))

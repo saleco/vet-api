@@ -1,5 +1,8 @@
 package com.vetty.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -7,9 +10,16 @@ import java.util.Date;
  */
 public class Attendance {
 
+    @NotNull
     private Animal animal;
+
+    @NotNull
     private Veterinary veterinary;
+
+    @NotNull
     private Date date;
+
+    @NotNull
     private AttendanceType attendanceType;
 
     public Animal getAnimal() {

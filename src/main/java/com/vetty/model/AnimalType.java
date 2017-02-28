@@ -4,15 +4,15 @@ package com.vetty.model;
  * Created by devfacotry on 2/27/17.
  */
 public class AnimalType {
-    private int id;
+    private Integer id;
     private String name;
 
-    public void setId(int id) {
-        this.id = id;
+    public Integer getId() {
+        return id;
     }
 
-    public int getId() {
-        return id;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
 

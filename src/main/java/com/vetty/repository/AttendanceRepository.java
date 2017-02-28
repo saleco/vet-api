@@ -35,7 +35,7 @@ public class AttendanceRepository {
                 PreparedStatement ps = connection.prepareStatement(sql);
                 ps.setInt(1, attendance.getAnimal().getId());
                 ps.setInt(2, attendance.getVeterinary().getId());
-                ps.setDate(3, new Date(attendance.getDate().getTime()));
+                ps.setTimestamp(3, new Timestamp(attendance.getDate().getTime()));
                 ps.setInt(4, attendance.getAttendanceType().getId());
                 return ps;
             }

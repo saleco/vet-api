@@ -1,6 +1,7 @@
 package com.vetty;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
@@ -8,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.Assert;
 
 /**
  * Created by devfacotry on 2/28/17.
@@ -16,7 +18,7 @@ import org.springframework.transaction.annotation.Transactional;
 @SpringBootTest
 @AutoConfigureMockMvc
 @Transactional
-public class BaseTests {
+public abstract class BaseTests {
 
     @Autowired
     protected MockMvc mockMvc;
@@ -30,4 +32,10 @@ public class BaseTests {
             throw new RuntimeException(e);
         }
     }
+
+//    @Test
+//    public void success(){
+//        Assert.isTrue(true);
+//    }
+
 }

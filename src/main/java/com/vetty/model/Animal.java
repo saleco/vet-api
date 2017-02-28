@@ -1,5 +1,6 @@
 package com.vetty.model;
 
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 
 /**
@@ -7,10 +8,18 @@ import java.util.Date;
  */
 public class Animal {
 
-    private int id;
+    private Integer id;
+
+    @NotNull
     private AnimalType animalType;
+
+    @NotNull
     private Client client;
+
+    @NotNull
     private String name;
+
+    @NotNull
     private Date birthDate;
 
     public AnimalType getAnimalType() {
@@ -37,14 +46,13 @@ public class Animal {
         this.birthDate = birthDate;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
+    public Integer getId() {
         return id;
     }
 
+    public void setId(Integer id) {
+        this.id = id;
+    }
 
     public void setName(String name) {
         this.name = name;
