@@ -32,23 +32,23 @@ public class VeterinaryRepository
                 new Object[]{id}, new VeterinaryRowMapper());
     }
 
-    public Veterinary create(final Veterinary user)
+    public Veterinary create(final Veterinary veterinary)
     {
-        final String sql = "insert into users(name,email) values(?,?)";
+        final String sql = "insert into veterinary(name) values(?)";
 
         KeyHolder holder = new GeneratedKeyHolder();
         jdbcTemplate.update(new PreparedStatementCreator() {
             @Override
             public PreparedStatement createPreparedStatement(Connection connection) throws SQLException {
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
-                ps.setString(1, user.getName());
+                ps.setString(1, veterinary.getName());
                 return ps;
             }
         }, holder);
 
-        int newUserId = holder.getKey().intValue();
-        user.setId(newUserId);
-        return user;
+        int newVeterinaryId = holder.getKey().intValue();
+        veterinary.setId(newVeterinaryId);
+        return veterinary;
     }
     private class VeterinaryRowMapper implements RowMapper<Veterinary>
     {
